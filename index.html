@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AutoTrace.kg - Vehicle History</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="#" class="logo">
+            AutoTrace<span>.kg</span>
+        </a>
+
+        <nav>
+            <a href="#home">Главная</a>
+            <a href="#how">Как работает</a>
+            <a href="#upload">Добавить ДТП</a>
+            <a href="#reports">Истории</a>
+        </nav>
+
+        <button class="nav-btn"
+        onclick="document.querySelector('#searchInput').focus()">
+            Проверить авто
+        </button>
+
+    </div>
+</header>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero" id="home">
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <span class="small-title">
+                VEHICLE HISTORY PLATFORM
+            </span>
+
+            <h1>
+                Know Your Car
+                <span>Before You Buy.</span>
+            </h1>
+
+            <p>
+                Check vehicle history, accident records
+                and damage information using a
+                Kyrgyzstan license plate or VIN number.
+            </p>
+
+            <div class="search-box">
+
+                <div class="search-tabs">
+                    <button class="tab active"
+                    onclick="changeMode('plate', this)">
+                        License Plate
+                    </button>
+
+                    <button class="tab"
+                    onclick="changeMode('vin', this)">
+                        VIN Number
+                    </button>
+                </div>
+
+                <div class="search-input">
+
+                    <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Enter license plate">
+
+                    <button onclick="searchCar()">
+                        Search →
+                    </button>
+
+                </div>
+
+                <div id="searchResult"></div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+            <img
+            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85"
+            alt="Car">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features" id="how">
+
+    <div class="container">
+
+        <div class="section-title">
+            <span>OUR FEATURES</span>
+            <h2>Everything About Your Car</h2>
+            <p>
+                Important vehicle information
+                in one place.
+            </p>
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🚗</div>
+                <h3>Accident History</h3>
+                <p>
+                    Check reported vehicle accidents.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Damage Photos</h3>
+                <p>
+                    View photos of reported damage.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>VIN Search</h3>
+                <p>
+                    Search vehicles using VIN numbers.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Verified Reports</h3>
+                <p>
+                    Reports are reviewed by administrators.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- UPLOAD SECTION -->
+
+<section class="upload-section" id="upload">
+
+    <div class="container upload-container">
+
+        <div class="upload-info">
+
+            <span class="small-title">
+                COMMUNITY REPORTS
+            </span>
+
+            <h2>
+                Help Others
+                Know The Truth.
+            </h2>
+
+            <p>
+                Upload accident photos and share
+                information about vehicle damage.
+                Our administrators will review
+                your submission.
+            </p>
+
+        </div>
+
+
+        <div class="upload-form">
+
+            <h2>Submit Vehicle Report</h2>
+
+            <form id="reportForm">
+
+                <label>License Plate</label>
+
+                <input
+                type="text"
+                id="plate"
+                placeholder="01KG 123 ABC">
+
+                <label>VIN Number</label>
+
+                <input
+                type="text"
+                id="vin"
+                maxlength="17"
+                placeholder="Enter VIN">
+
+                <label>Accident Date</label>
+
+                <input
+                type="date"
+                id="date">
+
+                <label>Damage Type</label>
+
+                <select id="damageType" required>
+
+                    <option value="">
+                        Select damage type
+                    </option>
+
+                    <option>Road Accident</option>
+                    <option>Body Damage</option>
+                    <option>Weather Damage</option>
+                    <option>Other Damage</option>
+
+                </select>
+
+                <label>Description</label>
+
+                <textarea
+                id="description"
+                placeholder="Describe what happened..."
+                required></textarea>
+
+                <label>Upload Photos</label>
+
+                <input
+                type="file"
+                id="photos"
+                accept="image/*"
+                multiple>
+
+                <div id="preview"></div>
+
+                <label class="agreement">
+                    <input type="checkbox" id="consent" required>
+                    I confirm that the submitted information
+                    is accurate to the best of my knowledge.
+                </label>
+
+                <button type="submit">
+                    Submit Report →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REPORTS -->
+
+<section class="reports" id="reports">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>VEHICLE DATABASE</span>
+
+            <h2>Recent Vehicle Reports</h2>
+
+            <p>
+                Example of vehicle history records.
+            </p>
+
+        </div>
+
+        <div class="report-grid" id="reportGrid">
+
+            <div class="report-card">
+
+                <img
+                src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80">
+
+                <div class="report-content">
+
+                    <span class="status">
+                        DEMO REPORT
+                    </span>
+
+                    <h3>Chevrolet Camaro</h3>
+
+                    <p>License Plate: 01KG 123 ABC</p>
+
+                    <p>Damage: Body Damage</p>
+
+                </div>
+
+            </div>
+
+            <div class="report-card">
+
+                <img
+                src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80">
+
+                <div class="report-content">
+
+                    <span class="status">
+                        DEMO REPORT
+                    </span>
+
+                    <h3>Toyota</h3>
+
+                    <p>License Plate: 08KG 456 DEF</p>
+
+                    <p>Damage: Accident</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN PANEL -->
+
+<section class="admin-section">
+
+    <div class="container">
+
+        <div class="section-title">
+            <span>ADMINISTRATION</span>
+            <h2>Moderation Panel</h2>
+            <p>
+                Review submitted vehicle reports.
+            </p>
+        </div>
+
+        <div class="admin-panel">
+
+            <div class="admin-header">
+                <h3>Pending Reports</h3>
+                <span id="pendingCount">0 pending</span>
+            </div>
+
+            <div id="adminList">
+                <p class="empty">
+                    No reports waiting for review.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="container">
+        <h2>AutoTrace<span>.kg</span></h2>
+        <p>
+            Vehicle History Platform · Kyrgyzstan
+        </p>
+        <small>
+            © 2026 AutoTrace. Educational prototype.
+            Not an official accident registry.
+        </small>
+    </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
